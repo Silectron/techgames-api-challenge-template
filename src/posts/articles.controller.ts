@@ -34,4 +34,4 @@ class ArticlesController {
     }
 }
 
-export default ArticlesController;
+export default ArticlesController

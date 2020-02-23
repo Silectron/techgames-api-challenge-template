@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import {Application, Request, Response} from "express";
 
 class App {
     public app: express.Application;
