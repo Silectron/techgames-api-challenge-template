@@ -13,8 +13,10 @@ class ArticlesController {
 
     public initializeRoutes() {
         this.router.get(this.path, this.getAllArticles);
-        this.router.post(this.path, this.createArticle);
         this.router.get(`${this.path}/:id`, this.getArticleById);
+        this.router.put(`${this.path}/:id`, this.modifyArticle);
+        this.router.delete(`${this.path}/:id`, this.deleteArticle);
+        this.router.post(this.path, this.createArticle);
     }
 
     private getAllArticles = (request: express.Request, response: express.Response) => {
@@ -38,6 +40,27 @@ class ArticlesController {
         createdArticle.save()
             .then((savedArticle) => {
                 response.send(savedArticle);
+            });
+    }
+
+    private modifyArticle = (request: express.Request, response: express.Response) => {
+        const id = request.params.id;
+        const articleData: Article = request.body;
+        this.article.findByIdAndUpdate(id, articleData, { new: true })
+            .then((article) => {
+                response.send(article);
+            });
+    }
+
+    private deleteArticle = (request: express.Request, response: express.Response) => {
+        const id = request.params.id;
+        this.article.findByIdAndDelete(id)
+            .then((successResponse) => {
+                if (successResponse) {
+                    response.send(200);
+                } else {
+                    response.send(404);
+                }
             });
     }
 }
