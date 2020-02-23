@@ -18,11 +18,11 @@ if (port == "") {
     process.exit(1);
 }
 
-app.use((req: Request, res: Response) => {
-    res.status(500).send({
-        status: 500,
-        message: "Not Implemented"
-    });
-});
+// app.use((req: Request, res: Response) => {
+//     res.status(500).send({
+//         status: 500,
+//         message: "Not Implemented"
+//     });
+// });
 
 export { app, port }

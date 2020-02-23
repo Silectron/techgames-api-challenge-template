@@ -19,4 +19,10 @@ const server = app.listen(port, () => {
     console.log(`Server started at http://localhost:${port}`);
 });
 
+app.get('/status', (request, response) => {
+    response.send('Up');
+});
+
+app.listen(5000);
+
 export { server };
