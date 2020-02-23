@@ -6,19 +6,19 @@ class ArticlesController {
     public router = express.Router();
 
     private articles: Article[] = [
-        {
-            title: 'The title',
-            subtitle: 'The subtitle',
-            body: 'The body of the article',
-            author: 'The authors full name'
+            {
+                title: 'The title',
+                subtitle: 'The subtitle',
+                body: 'The body of the article',
+                author: 'The authors full name'
         }
     ];
 
     constructor() {
-        this.intializeRoutes();
+        this.initializeRoutes();
     }
 
-    public intializeRoutes() {
+    public initializeRoutes() {
         this.router.get(this.path, this.getAllArticles);
         this.router.post(this.path, this.createAnArticle);
     }
