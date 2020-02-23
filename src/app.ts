@@ -33,12 +33,12 @@ class App {
     }
 
     private connectToTheDatabase() {
-        // const {
-        //     MONGO_USER,
-        //     MONGO_PASSWORD,
-        //     MONGO_PATH,
-        // } = process.env;
-        //mongoose.connect(`mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`);
+        const {
+            MONGO_USER,
+            MONGO_PASSWORD,
+            MONGO_PATH,
+        } = process.env;
+        mongoose.connect(`mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`);
         //mongoose.connect("mongodb+srv://haihan:harryhurry@haihancluster-i2da4.mongodb.net/test?retryWrites=true&w=majority");
     }
 }

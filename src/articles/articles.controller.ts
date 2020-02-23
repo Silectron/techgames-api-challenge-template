@@ -12,6 +12,11 @@ class ArticlesController {
     }
 
     public initializeRoutes() {
+        this.router.get("/status", (req, res) => {
+            res.status(200);
+            res.json({ "status" : "Up" });
+            }
+        )
         this.router.get(this.path, this.getAllArticles);
         this.router.get(`${this.path}/:id`, this.getArticleById);
         this.router.put(`${this.path}/:id`, this.modifyArticle);
