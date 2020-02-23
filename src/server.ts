@@ -20,7 +20,9 @@ const server = app.listen(port, () => {
 });
 
 app.get('/status', (request, response) => {
-    response.send('Up');
+    response.send({
+        "status" : "Up"
+    })
 });
 
 app.listen(5000);
