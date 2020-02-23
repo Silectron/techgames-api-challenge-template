@@ -1,28 +1,33 @@
-import express from "express";
-import bodyParser from "body-parser";
-import dotenv from "dotenv";
-import cors from "cors";
-import { Application, Request, Response } from "express";
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
 
-dotenv.config();
+class App {
+    public app: express.Application;
+    public port: number;
 
-const app: Application = express();
-const port = process.env.SERVER_PORT || 3000;
+    constructor(controllers, port) {
+        this.app = express();
+        this.port = port;
 
-app.use(bodyParser.json());
-app.use(cors());
+        this.initializeMiddlewares();
+        this.initializeControllers(controllers);
+    }
 
-if (port == "") {
-    // tslint:disable-next-line:no-console
-    console.log("Missing environment variables for configuration (check .env.example and create a .env)")
-    process.exit(1);
+    private initializeMiddlewares() {
+        this.app.use(bodyParser.json());
+    }
+
+    private initializeControllers(controllers) {
+        controllers.forEach((controller) => {
+            this.app.use('/', controller.router);
+        });
+    }
+
+    public listen() {
+        this.app.listen(this.port, () => {
+            console.log(`App listening on the port ${this.port}`);
+        });
+    }
 }
 
-// app.use((req: Request, res: Response) => {
-//     res.status(500).send({
-//         status: 500,
-//         message: "Not Implemented"
-//     });
-// });
-
-export { app, port }
+export default App;
