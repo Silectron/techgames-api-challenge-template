@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import * as mongoose from 'mongoose';
 import {Application, Request, Response} from "express";
 
 class App {
@@ -10,6 +11,7 @@ class App {
         this.app = express();
         this.port = port;
 
+        this.connectToTheDatabase();
         this.initializeMiddlewares();
         this.initializeControllers(controllers);
     }
@@ -28,6 +30,16 @@ class App {
         this.app.listen(this.port, () => {
             console.log(`App listening on the port ${this.port}`);
         });
+    }
+
+    private connectToTheDatabase() {
+        // const {
+        //     MONGO_USER,
+        //     MONGO_PASSWORD,
+        //     MONGO_PATH,
+        // } = process.env;
+        //mongoose.connect(`mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`);
+        mongoose.connect("mongodb+srv://haihan:harryhurry@haihancluster-i2da4.mongodb.net/test?retryWrites=true&w=majority");
     }
 }
 
