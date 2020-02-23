@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import Post from './article.interface';
+import Article from './article.interface';
 
 const articleSchema = new mongoose.Schema({
     title: String,
@@ -8,6 +8,6 @@ const articleSchema = new mongoose.Schema({
     author: String
 });
 
-const articleModel = mongoose.model<Post & mongoose.Document>('Post', articleSchema);
+const articleModel = mongoose.model<Article & mongoose.Document>('Article', articleSchema);
 
 export default articleModel;
