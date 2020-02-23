@@ -40,11 +40,12 @@ class ArticlesController {
     }
 
     private createArticle = (request: express.Request, response: express.Response) => {
+        console.log(request.body);
         const articleData: Article = request.body;
         const createdArticle = new this.article(articleData);
         createdArticle.save()
             .then((savedArticle) => {
-                response.send(savedArticle);
+                response.send(request.params);
             });
     }
 
